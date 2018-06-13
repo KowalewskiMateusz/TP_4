@@ -235,7 +235,37 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 
 
+bool gora_dol()
+{
+	if (abs(winda.polozenie) < winda.kolejka.front() * 100)  //Czy winda jedzie w gore czy w dol
+		return 1;   //jedziemy w gore
+	else
+		return 0;
+}
 
+
+bool wywol(int pietro)                                                 //sprawdza czy winda jest wywolywana gdziekolwiek
+{
+	bool sprawdz_1 = false;
+	bool sprawdz_2 = false;
+	for (int i = 0;i < winda.kolejka.size();i++)
+	{
+		if (winda.kolejka.front() == pietro)
+			sprawdz_1 == true;
+		winda.kolejka.push_back(winda.kolejka.front());
+		winda.kolejka.pop_front();
+	}
+	for (int i = 0;i < winda.pasazerowie.size();i++)
+	{
+		if (winda.pasazerowie.front() == pietro)
+			sprawdz_2 == true;
+		winda.pasazerowie.push_back(winda.kolejka.front());
+		winda.pasazerowie.pop_front();
+	}
+	if (sprawdz_1 && !sprawdz_2)
+		return 1;
+	else return 0;
+}
   
 
 void dodaj(int m, int n)
